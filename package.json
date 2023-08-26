@@ -1,0 +1,21 @@
+{
+  "name": "webcheck",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bookAppointment.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/storage": "^7.0.1",
+    "axios": "^1.4.0",
+    "gaxios": "^6.1.0",
+    "google-auth-library": "^9.0.0",
+    "googleapis": "^126.0.0",
+    "node-telegram-bot-api": "^0.61.0",
+    "play-sound": "^1.1.5",
+    "puppeteer": "^21.0.3"
+  }
+}
