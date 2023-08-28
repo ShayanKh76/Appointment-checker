@@ -1,20 +1,19 @@
+const chatId = 1234;
 const puppeteer = require("puppeteer");
 const readline = require("readline");
 const play = require("play-sound")();
 const axios = require("axios");
-
 let webAppUrlClose =
   "https://script.google.com/macros/s/AKfycbyQAnbNOwZY_8tVSrjpsl6UhDqYTzDyVxN-QpL0uuWWbopNhq_bQ2x5woskXvm-ZZsPuQ/exec";
 let webAppUrlOpen =
   "https://script.google.com/macros/s/AKfycbxcPmW1WeAqFT7CyJLnX_xzFMKxlMD9uuCeOWf2nqxbFHXxlV71NZebRc_ErZcsnfne/exec";
-let webAppUrlCallForHelp =
-  "https://script.google.com/macros/s/AKfycbyEsOu81PBKzcOYFskB4h1CkVsVuyNv96HhgEATUl95gopScczuosjfz3QO5rRje85BtA/exec";
+let webAppUrlCallForHelp = `https://script.google.com/macros/s/AKfycbyMKmsy4QLyXI3sMnxWM-sS0TPbVVNcdnOLB8Mxd5bNuJJFCVDGxTvlO3v8d8hJbwzPgw/exec?id=${chatId}`;
 
 let counter = 0;
 let currentPage = 0;
 
 const startAutomation = async () => {
-  const browserURL = "http://localhost:9222"; // URL of the remote debugging interface
+  const browserURL = "http://localhost:9222";
   const browser = await puppeteer.connect({ browserURL });
   const targets = await browser.targets();
   const pages = targets.filter((target) => target.type() === "page");
@@ -168,7 +167,7 @@ const startAutomation = async () => {
       counter = counter + 1;
       console.log(counter);
       if (nonDisabledTdClasses.length === 0) {
-        // axios.get(webAppUrlClose);
+        axios.get(webAppUrlClose);
         console.log("Array is empty, reloading the page...");
         await page.reload();
         await page.evaluate(
@@ -176,19 +175,19 @@ const startAutomation = async () => {
         );
         startAutomation();
       } else {
+        axios
+          .get(webAppUrlOpen)
+          .then((response) => {
+            console.log("Response:", response.data);
+          })
+          .catch((error) => {
+            console.error("Error:", error.response.data);
+          });
         play.play("alert.mp3", (err) => {
           if (err) {
             console.error("Error playing sound:", err);
           }
         });
-        // axios
-        //   .get(webAppUrlOpen)
-        //   .then((response) => {
-        //     console.log("Response:", response.data);
-        //   })
-        //   .catch((error) => {
-        //     console.error("Error:", error.response.data);
-        //   });
       }
 
       rl.close();
@@ -204,7 +203,7 @@ const startAutomation = async () => {
 };
 
 const startAllOverAgain = async () => {
-  const browserURL = "http://localhost:9222"; // URL of the remote debugging interface
+  const browserURL = "http://localhost:9222";
   const browser = await puppeteer.connect({ browserURL });
   const targets = await browser.targets();
   const pages = targets.filter((target) => target.type() === "page");
@@ -254,7 +253,7 @@ const startAllOverAgain = async () => {
 
     startAutomation();
   } catch {
-    // axios.get(webAppUrlCallForHelp);
+    axios.get(webAppUrlCallForHelp);
   }
 };
 
