@@ -12,7 +12,6 @@ let webAppUrlCallForHelp = `https://script.google.com/macros/s/AKfycbyMKmsy4QLyX
 
 let counter = 0;
 let currentPage = 0;
-
 const startAutomation = async () => {
   const browserURL = "http://localhost:9222";
   const browser = await puppeteer.connect({ browserURL });
@@ -80,16 +79,20 @@ const startAutomation = async () => {
 
       const selector = "#popupDatepicker2";
       await page.waitForSelector(selector);
-      await page.evaluate((selector) => {
-        const inputElement = document.querySelector(selector);
-        if (inputElement) {
-          inputElement.removeAttribute("readonly");
-          inputElement.value = userDate;
-        } else {
-          console.log("Input element not found.");
-          startAllOverAgain();
-        }
-      }, selector);
+      await page.evaluate(
+        (selector, userDate) => {
+          const inputElement = document.querySelector(selector);
+          if (inputElement) {
+            inputElement.removeAttribute("readonly");
+            inputElement.value = userDate;
+          } else {
+            console.log("Input element not found.");
+            startAllOverAgain();
+          }
+        },
+        selector,
+        userDate
+      );
       const checkCardListBtnDiv = await page.$("#checkCardListBtnDiv");
       if (checkCardListBtnDiv) {
         await checkCardListBtnDiv.click();
