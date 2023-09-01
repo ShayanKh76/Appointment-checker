@@ -1,4 +1,5 @@
-const chatId = 1234;
+const chatId = 1234; //telegram id
+const userDate = "1402/05/08"; //payment date
 const puppeteer = require("puppeteer");
 const readline = require("readline");
 const play = require("play-sound")();
@@ -83,7 +84,7 @@ const startAutomation = async () => {
         const inputElement = document.querySelector(selector);
         if (inputElement) {
           inputElement.removeAttribute("readonly");
-          inputElement.value = "1402/05/08";
+          inputElement.value = userDate;
         } else {
           console.log("Input element not found.");
           startAllOverAgain();
