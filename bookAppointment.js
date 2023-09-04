@@ -1,13 +1,11 @@
 const chatId = 1234; //telegram id
-const userDate = "1402/05/08"; //payment date
+const userDate = "1402/05/19"; //payment date
 const puppeteer = require("puppeteer");
 const readline = require("readline");
 const play = require("play-sound")();
 const axios = require("axios");
-let webAppUrlClose =
-  "https://script.google.com/macros/s/AKfycbyQAnbNOwZY_8tVSrjpsl6UhDqYTzDyVxN-QpL0uuWWbopNhq_bQ2x5woskXvm-ZZsPuQ/exec";
-let webAppUrlOpen =
-  "https://script.google.com/macros/s/AKfycbxcPmW1WeAqFT7CyJLnX_xzFMKxlMD9uuCeOWf2nqxbFHXxlV71NZebRc_ErZcsnfne/exec";
+let webAppUrlClose = `https://script.google.com/macros/s/AKfycbwOFf8Q6oeXZcJojbK33p3DYNNjzZ4EO0sUDHMuWQMIkc61g7r3RhY7shZz4bgkx23I_Q/exec?id=${chatId}`;
+let webAppUrlOpen = `https://script.google.com/macros/s/AKfycbzD_hHGt0zFyVByk5lnUdOzFPjxvxYdyy7aKvqa6kvlD8Y58j0ie_VnIF3VMnd4MG4G/exec?id=${chatId}`;
 let webAppUrlCallForHelp = `https://script.google.com/macros/s/AKfycbyMKmsy4QLyXI3sMnxWM-sS0TPbVVNcdnOLB8Mxd5bNuJJFCVDGxTvlO3v8d8hJbwzPgw/exec?id=${chatId}`;
 
 let counter = 0;
