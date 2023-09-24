@@ -4,7 +4,7 @@ const puppeteer = require("puppeteer");
 const readline = require("readline");
 const play = require("play-sound")();
 const axios = require("axios");
-let webAppUrlClose = `https://script.google.com/macros/s/AKfycbymteOLwef1NXuIXO9d4ETqrNjfgJ-_kdwAgPam1r93pwdUdsDllploBc3ar__gewDrNQ/exec`;
+let webAppUrlClose = `https://script.google.com/macros/s/AKfycbymteOLwef1NXuIXO9d4ETqrNjfgJ-_kdwAgPam1r93pwdUdsDllploBc3ar__gewDrNQ/exec?id=${chatId}`;
 let webAppUrlOpen = `https://script.google.com/macros/s/AKfycbzD_hHGt0zFyVByk5lnUdOzFPjxvxYdyy7aKvqa6kvlD8Y58j0ie_VnIF3VMnd4MG4G/exec?id=${chatId}`;
 let webAppUrlCallForHelp = `https://script.google.com/macros/s/AKfycbyMKmsy4QLyXI3sMnxWM-sS0TPbVVNcdnOLB8Mxd5bNuJJFCVDGxTvlO3v8d8hJbwzPgw/exec?id=${chatId}`;
 
